@@ -1,7 +1,6 @@
-// swift-tools-version: 6.0
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
+// swift-tools-version:5.3
 import PackageDescription
+
 let version = "4.11.0"
 let checksum = "4b1e76f3d1ce19369ff7e151d1c564926b4d23b5515c62fc65517dfd395c3929"
 
@@ -9,7 +8,7 @@ let package = Package(
     name: "PackageIO",
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
-        .library(
+        .executable(
             name: "PackageIO",
             targets: ["PackageIO"]),
     ],
@@ -24,19 +23,17 @@ let package = Package(
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
             name: "PackageIO",
-            dependencies :[
+            dependencies: [
                 "CocoaLumberjack",
-                //"IOWrapperKit"
+                "opencv2"
             ],
-            path: "Sources/PackageIO"
+            path: "Sources"
         ),
-        //        .binaryTarget(
-        //            name: "IOWrapperKit",
-        //            path: "./Frameworks/IOWrapperKit.xcframework"
-        //        ),
-            .binaryTarget(name: "opencv2",
-                          url: "https://github.com/yeatse/opencv-spm/releases/download/\(version)/opencv2.xcframework.zip",
-                          checksum: checksum),
+        .binaryTarget(
+            name: "opencv2",
+            url: "https://github.com/yeatse/opencv-spm/releases/download/\(version)/opencv2.xcframework.zip",
+            checksum: checksum
+        ),
         .testTarget(
             name: "PackageIOTests",
             dependencies: ["PackageIO"]

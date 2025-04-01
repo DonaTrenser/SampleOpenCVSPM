@@ -1,8 +1,14 @@
+
 import CocoaLumberjack
-//import IOWrapperKit
+import opencv2
 
 public struct PackageIO {
+    
+    
     public static func helloWorld() {
-        print("Hello, world!")
+        // Initialize CocoaLumberjack
+        DDLog.add(DDOSLogger.sharedInstance)
+  
     }
+
 }
